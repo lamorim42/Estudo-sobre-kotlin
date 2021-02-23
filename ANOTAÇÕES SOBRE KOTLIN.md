@@ -5,16 +5,28 @@ Kotlin é uma linguagem de programação de código aberto que combina programa�
 - **Tipos de dados encontrados no kotlin**
 
   - int
+  
   - long
+  
   - float
+  
   - double
+  
   - array
+  
   - boolean
+  
   - char
+  
   - byte
+  
   - short
+  
   - null*
+  
   - Entre outros...
+  
+    
   
 - **Começando a escrever em Kotlin**
 
@@ -107,6 +119,18 @@ Kotlin é uma linguagem de programação de código aberto que combina programa�
           println("${variavelUm}")
       }
       ````
+      
+      ````kotlin
+      val name = "Luís" //Type inferences, não preciso declarar o tipo de variável, o kotlin já reconhece o tipo.
+      var greeting: String? = null //mas se eu quiser que a variavel possa ter valor nulo tenho que declarar. (pois o kotlin é non null).
+      fun main() {
+          greeting = "Hello"
+          println(${name})
+          println(${greeting})
+      }
+      ````
+      
+      
 
   - **Operadores aritméticos** 
 
@@ -142,6 +166,25 @@ Kotlin é uma linguagem de programação de código aberto que combina programa�
 
     - Os **comandos** `.compareTo()` retornam os valores -1 (se `a < b`), 1 (se `a > b`) ou 0 (se `a = b`).
     - As **expressões** retornam valores *booleanos*, ou seja, verdadeiro ou falso. Assim como os comandos `.equals()`
+
+  - **Operadores Lógicos**
+
+    | Função e expressão |      Comando      |
+    | :----------------: | :---------------: |
+    |       E (&&)       | (exp.1)and(exp.2) |
+    |     Ou (\| \|)     | (exp.1)or(exp.2)  |
+
+  - **Operadores In e range**
+
+    |        Função e expressão         |
+    | :-------------------------------: |
+    |            contém (In)            |
+    |         Não contem (!In)          |
+    | range/faixa de valores (int..int) |
+
+    ------
+
+    
 
 - **Fazendo um banner:**
 
@@ -220,3 +263,395 @@ fun printCakeBotton(age: Int, layers: Int){
 }
 ````
 
+- **Indexação**
+
+  - `first()`
+  - `last()`
+  - `String.length`
+  - `String[index]`
+
+- Formatação
+
+  |            Nome            |                            Função                            |                           Métodos                            |
+  | :------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
+  |  Capitalização de strings  |   Altera a formatação entre letras maiúsculas e minúsculas   | capitalize(), toUpperCase(), toLowerCase() and decapitalize() |
+  |     Remoção de espaços     | Remove espaços vazios e caracteres inadequados para impressão |                trimEnd(), trimStart(), trim()                |
+  | Substituição de caracteres |               Substituir caracteres por outros               |                        replace(x, y)                         |
+  |         Formatação         |       Formatar outros valores para um padrão de string       |               "padrão ${valor}".format(valor)                |
+
+- **Empty x Blank**
+  - Empty é uma string de tamanho 0
+  - Blank é uma string de tamanho > 0, mas todo espaços é vazios.
+
+- **If and When:**
+
+  ````kotlin
+  val name = "Luís"
+  var greeting: String? = null
+  
+  fun main() {
+      if (greeting != null) {
+          println("${greeting}")
+      } else {
+          println("Hi")
+      }
+      println("${name}")
+  }
+  ````
+
+  
+
+  ````kotlin
+  val name = "Luís"
+  var greeting: String? = null
+  
+  fun main() {
+  	when (greeting) {
+          null -> println("Hi")
+          else -> println("${greeting}")
+      }
+      println("${name}")
+  }
+  ````
+
+  
+
+  - **Local variable**
+
+    ````kotlin
+    val name = "Luís"
+    var greeting: String? = null
+    
+    fun main() {
+        val greetingToPrint = if(greeting != null) greeting else "Hi"
+        println("${greetingToPrint}")
+        println("${name}")
+    }
+    ````
+
+    ````kotlin
+    val name = "Luís"
+    var greeting: String? = null
+    
+    fun main() {
+        val greetingToPrint = when(greeting) {
+        null -> "Hi"
+        else -> greeting
+        }
+        println("${greetingToPrint}")
+        println("${name}")
+    }
+    ````
+
+- **Funções**
+
+  ````kotlin
+  fun getGreeting(): String {
+     return "Hello Kotlin" 
+  }
+  //Tbm poderiamos escrever a função acima como:
+  fun getGreeting() = "Hello Kotlin"
+  
+  fun sayHello() {
+      println(getGreeting())
+  }
+  
+  fun main(){
+      println("Hello World")
+      println(getGreeting())
+      sayHello()
+  }
+  ````
+
+  - **Parâmetros para função**
+
+    ````kotlin
+    fun sayHello(itemToGreet:String) {
+        val msg = "Hello ${itemToGreet}"
+        println("${msg}")
+    }
+    //Tbm poderiamos definir a função acima como:
+    fun sayHello(itemToGreet:String) = println("Hello ${itemToGreet}")
+    
+    fun main() {
+        sayHello("Kotlin")
+        sayHello("Wolrd")
+    }
+    ````
+
+    ````kotlin
+    fun sayHello(greeting:String, itemToGreet:String) = println("${greeting} ${itemToGreet}")
+    
+    fun main() {
+        sayHello("Hey", "Kotlin")
+        sayHello("Hello", "Wolrd")
+    }
+    ````
+
+- **Array**
+
+  - `arrayOf` 
+
+  ````kotlin
+  fun main() {
+     val umaArray = arrayOf("Kotlin", "Programming", "Comic Books")
+      println(umaArray.size)
+      println(umaArray[0])
+      println(umaArray.get(0))
+      
+      for (coisas in umaArray) {
+          println("${coisas}")
+      }
+  }
+  //print on console:
+      /* 
+  	3 			//.size
+  	Kotlin		//[0]
+  	Kotlin		//.get(0)
+  	Kotlin
+  	Programming
+  	Comic Books
+      */
+  ````
+
+  ````kotlin
+  //Podemos escrever esse for de outra maneira
+  fun main() {
+     val umaArray = arrayOf("Kotlin", "Programming", "Comic Books")
+      println(umaArray.size)
+      println(umaArray[0])
+      println(umaArray.get(0))
+      
+      umaArray.forEach {println("${it}")}
+      //Pdemos, tbm, anexar o index de cada elemento
+      umaArray.forEachIndexed {index, it -> println("${index}, ${it}")}
+      //print on console:
+      /* 
+      0, Kotlin
+  	1, Programming
+  	2, Comic Books
+      */
+  }
+  ````
+
+  
+
+- **Lista**
+
+  - `listOf`
+
+  ````kotlin
+  fun main() {
+     val umaLista = listOf("Kotlin", "Programming", "Comic Books")
+      umaLista.forEach {println("${it}")}
+     }
+  // mesmo conceito do Array
+  ````
+
+  Podemos criar listas onde se pode adicionar itens
+
+  ````kotlin
+  fun main() {
+     val umaLista = mutableListOf("Kotlin", "Programming", "Comic Books")
+      umaLista.add("Cats")
+      umaLista.forEach {it -> println("${it}")}
+     }
+  //print on console:
+      /* 
+      Kotlin
+  	Programming
+  	Comic Books
+  	Cats
+      */
+  ````
+
+  
+
+- **Map**
+
+  - `mapOf`
+
+  ````kotlin
+  fun main() {
+      val map = mapOf(1 to "a", 2 to "b", 3 to "c")
+      map.forEach {key, value -> println("${key} -> ${value}")}
+  }
+  //print on console:
+      /* 
+      1 -> a
+  	2 -> b
+  	3 -> c
+      */
+  ````
+
+- **'Função + Lista'**, *"brincando com os argumentos"*
+
+  ````kotlin
+  fun sayHello(greeting:String, itemsToGreet:List<String>) { 
+      itemsToGreet.forEach { item ->
+      println("${greeting} ${item}")
+      }
+  }
+  
+  fun main() {
+     val umaLista = listOf("Kotlin", "Programming", "Comic Books")
+     sayHello("Hi", umaLista)
+  
+  }
+   //print on console:
+      /* 
+      Hi Kotlin
+  	Hi Programming
+  	Hi Comic Books
+      */
+  ````
+
+  - `vararg`
+
+    ````kotlin
+    fun sayHello(greeting:String, vararg itemsToGreet:String) { 
+        itemsToGreet.forEach { item ->
+        println("${greeting} ${item}")
+        }
+    }
+    
+    fun main() {
+       //val umaLista = listOf("Kotlin", "Programming", "Comic Books")
+       sayHello("Hi", "Kotlin", "Programming", "Comic Books", "Wolrd")
+    
+    }
+     //print on console:
+        /* 
+        Hi Kotlin
+    	Hi Programming
+    	Hi Comic Books
+    	Hi Wolrd
+        */
+    ````
+
+    ````kotlin
+    fun sayHello(greeting:String, vararg itemsToGreet:String) { 
+        itemsToGreet.forEach { item ->
+        println("${greeting} ${item}")
+        }
+    }
+    
+    fun main() {
+       val umaArray = arrayOf("Kotlin", "Programming", "Comic Books")
+       sayHello("Hi", *umaArray)
+    //usamos * para o kotlin reconhecer a lista como argumento válido para a função
+    }
+     //print on console:
+        /* 
+        Hi Kotlin
+    	Hi Programming
+    	Hi Comic Books
+        */
+    ````
+
+  - "Bagunçando" Argumentos:
+
+    ````kotlin
+    fun greetPerson(greeting:String = "Hello", name:String = "Kotlin") = println("${greeting} ${name}")
+    
+    fun main() {
+        greetPerson(name = "Luís", greeting = "Hi") 
+        //print on console:
+        /* 
+        Hi Luís
+        */
+        greetPerson()
+         //print on console:
+        /* 
+        Hello Kotlin
+        */
+    }
+    
+    ````
+
+     ````kotlin
+    fun sayHello(greeting:String, vararg itemsToGreet:String) { 
+        itemsToGreet.forEach { item ->
+        println("${greeting} ${item}")
+        }
+    }
+    
+    fun greetPerson(greeting:String = "Hello", name:String = "Kotlin") = println("${greeting} ${name}")
+    
+    fun main() {
+       val umaArray = arrayOf("Kotlin", "Programming", "Comic Books")
+       sayHello(itemsToGreet = umaArray, greeting = "Hi")
+    }
+    //print on console:
+    /*
+    Hi Kotlin
+    Hi Programming
+    Hi Comic Books
+    */
+     ````
+
+    
+
+- **Class**
+
+  ````kotlin
+  class Person (val firstName: String, val lastName: String) 
+  //Em IDE a classe é declarada em outro arquivo, um arquivo de classe.
+  
+  fun main() {
+    val person = Person("Luís", "Amorim")
+    person.firstName
+    person.lastName
+  }
+  ````
+
+  ````kotlin
+  class Person (val firstName: String = "Peter", val lastName: String = "Parker") {
+      var nickName: String? = null
+      set(value){
+          field = value
+          println("the new nickname is ${value}")
+      }
+      get(){
+          println("the returned value is ${field}")
+          return field
+      }
+  }
+  //------------------------------------------------
+  fun main() {
+    val person = Person()
+    person.firstName
+    person.lastName
+    person.nickname = "Goku"
+    person.nickname = "Cacaroto"
+    println(person.nickName)
+  }
+  ````
+
+  - **Method in class**
+
+    ````kotlin
+    class Person (val firstName: String = "Peter", val lastName: String = "Parker") {
+        var nickName: String? = null
+        set(value){
+            field = value
+            println("the new nickname is ${value}")
+        }
+        get(){
+            println("the returned value is ${field}")
+            return field
+        }
+        
+        fun printInfo(){
+            val nickNameToPrint = nickName ?: "no nickname"
+            println("${firstName} (${nickNameToPrint}) ${lastName}")
+        }
+    }
+    //--------------------------------------------
+    fun main() {
+      val person = Person()
+        person.printInfo()
+    }
+    ````
+
+    
