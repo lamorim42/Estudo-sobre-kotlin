@@ -307,6 +307,7 @@ fun printCakeBotton(age: Int, layers: Int){
   
   fun main() {
   	when (greeting) {
+      //dando as condições de valores para greeting
           null -> println("Hi")
           else -> println("${greeting}")
       }
@@ -319,8 +320,8 @@ fun printCakeBotton(age: Int, layers: Int){
   - **Local variable**
 
     ````kotlin
-    val name = "Luís"
-    var greeting: String? = null
+    val name = "Luís" //uma vez que o valor foi dado, não pode ser alterado, dado que é uma val
+    var greeting: String? = null //pode assumir outro valor
     
     fun main() {
         val greetingToPrint = if(greeting != null) greeting else "Hi"
@@ -353,13 +354,13 @@ fun printCakeBotton(age: Int, layers: Int){
   fun getGreeting() = "Hello Kotlin"
   
   fun sayHello() {
-      println(getGreeting())
+      println(getGreeting()) //imprime Hello Kotlin
   }
   
   fun main(){
-      println("Hello World")
-      println(getGreeting())
-      sayHello()
+      println("Hello World") //imprime Hello World
+      println(getGreeting()) //imprime Hello Kotlin
+      sayHello() //imprime Hello Kotlin
   }
   ````
 
@@ -383,8 +384,8 @@ fun printCakeBotton(age: Int, layers: Int){
     fun sayHello(greeting:String, itemToGreet:String) = println("${greeting} ${itemToGreet}")
     
     fun main() {
-        sayHello("Hey", "Kotlin")
-        sayHello("Hello", "Wolrd")
+        sayHello("Hey", "Kotlin") //imprime Hello Kotlin
+        sayHello("Hello", "Wolrd") //imprime Hello Wolrd
     }
     ````
 
@@ -395,12 +396,12 @@ fun printCakeBotton(age: Int, layers: Int){
   ````kotlin
   fun main() {
      val umaArray = arrayOf("Kotlin", "Programming", "Comic Books")
-      println(umaArray.size)
-      println(umaArray[0])
-      println(umaArray.get(0))
+      println(umaArray.size) // imprime 3
+      println(umaArray[0]) // imprime Kotlin
+      println(umaArray.get(0)) //imprime Kotlin
       
-      for (coisas in umaArray) {
-          println("${coisas}")
+      for (it in umaArray) {
+          println("${it}")
       }
   }
   //print on console:
@@ -459,9 +460,9 @@ fun printCakeBotton(age: Int, layers: Int){
   //print on console:
       /* 
       Kotlin
-  	Programming
-  	Comic Books
-  	Cats
+  	  Programming
+  	  Comic Books
+  	  Cats
       */
   ````
 
@@ -479,8 +480,8 @@ fun printCakeBotton(age: Int, layers: Int){
   //print on console:
       /* 
       1 -> a
-  	2 -> b
-  	3 -> c
+  	  2 -> b
+  	  3 -> c
       */
   ````
 
@@ -488,8 +489,8 @@ fun printCakeBotton(age: Int, layers: Int){
 
   ````kotlin
   fun sayHello(greeting:String, itemsToGreet:List<String>) { 
-      itemsToGreet.forEach { item ->
-      println("${greeting} ${item}")
+      itemsToGreet.forEach { itemsToGreet ->
+      println("${greeting} ${itemsToGreet}")
       }
   }
   
@@ -549,13 +550,14 @@ fun printCakeBotton(age: Int, layers: Int){
         */
     ````
 
-  - "Bagunçando" Argumentos:
+  - Nomeando Argumentos:
 
     ````kotlin
     fun greetPerson(greeting:String = "Hello", name:String = "Kotlin") = println("${greeting} ${name}")
     
     fun main() {
-        greetPerson(name = "Luís", greeting = "Hi") 
+        greetPerson(name = "Luís", greeting = "Hi") // nomeado com o sinal =, apesar de podermos mudar a oredem, só poderemos chamar a fun com 1 argumento se pre-definirmos os argumentos.
+        // greetPerson(name: "Luís", greeting: "Hi") sem nomear
         //print on console:
         /* 
         Hi Luís
@@ -580,7 +582,7 @@ fun printCakeBotton(age: Int, layers: Int){
     
     fun main() {
        val umaArray = arrayOf("Kotlin", "Programming", "Comic Books")
-       sayHello(itemsToGreet = umaArray, greeting = "Hi")
+       sayHello(itemsToGreet = *umaArray, greeting = "Hi")
     }
     //print on console:
     /*
@@ -599,7 +601,7 @@ fun printCakeBotton(age: Int, layers: Int){
   //Em IDE a classe é declarada em outro arquivo, um arquivo de classe.
   
   fun main() {
-    val person = Person("Luís", "Amorim")
+    val person = Person("Luís", "Amorim") //Instância da class Person
     person.firstName
     person.lastName
   }
@@ -654,4 +656,138 @@ fun printCakeBotton(age: Int, layers: Int){
     }
     ````
 
-    
+  - **Interface**
+
+ ````kotlin
+    class Person (val firstName: String = "Peter", val lastName: String = "Parker") {
+        var nickName: String? = null
+        set(value){
+            field = value
+            println("the new nickname is ${value}")
+        }
+        get(){
+            println("the returned value is ${field}")
+            return field
+        }
+        
+        fun printInfo(){
+            val nickNameToPrint = nickName ?: "no nickname"
+            println("${firstName} (${nickNameToPrint}) ${lastName}")
+        }
+    }
+    //--------------------------------------------Outro arquivo de interface
+    interface personInfoProvider {
+      val providerInfo: String 
+      fun printInfo(person: Person) {
+        println(providerInfo)
+        person.printInfo()
+      }
+    }
+
+    interface sessionInfoProvider {
+      fun getSessionId():String
+    }
+
+
+    class basicInfoProvider: personInfoProvider, sessionInfoProvider {
+     override val providerInfo: String
+     get() = "basicInfoProvider"
+
+     override fun printInfo(person: Person) {
+      super.printInfo(person)
+      println("additional print statement")
+     }
+    }
+
+     override fun fun getSessionId():String {
+      return "Session"
+     }
+
+    fun main(){
+      val provider = basicInfoProvider()
+
+      provider.printInfo(Person())
+      provider.getSessionId()
+
+      checkTypes(provider)
+    }
+
+    fun checkTypes(infoProvider: personInfoProvider){
+      if (infoProvider is sessionInfoProvider){
+        println("is a session info provider")
+      } else {
+        println("not a session info provider")
+        infoProvider.getSessionId()
+      }
+    }
+
+    //print on console:
+    /*
+    basicInfoProvider
+    Peter (no nickname) Parker
+    additional print statement
+    is a session info provider
+    */
+
+
+    //--------------------------------------------Outro arquivo para função
+    fun main() {
+      val person = Person()
+        person.printInfo()
+    }
+    ````
+
+  - **Inheritance**
+
+
+
+- Exercício 1
+
+  ````kotlin
+  // Insira aqui os valores a serem operados
+  val valorUm:Float? = 5f //valor 1
+  val valorDois:Float? = 3f //valor 2
+  val operação:String = "/" //Escolha uma operação "+" (soma), "-" (subtração), "*" (produto), "/" (divisão)
+  
+  fun main() {
+     if (operação == "+" && valorUm != null && valorDois != null) {
+         valorUm.plus(valorDois)
+         println(valorUm.plus(valorDois))
+     } else if (operação == "-" && valorUm != null && valorDois != null) {
+         valorUm.minus(valorDois)
+         println(valorUm.minus(valorDois))
+     } else if (operação == "*" && valorUm != null && valorDois != null) {
+         valorUm.times(valorDois)
+         println(valorUm.times(valorDois))
+     } else if (operação == "/" && valorUm != null && valorDois != null) {
+         valorUm.div(valorDois)
+         println(valorUm.div(valorDois))
+     } else {
+         println("Um dos valores é nulo ou a operação é inválida")
+     }
+  }
+  ````
+  
+````kotlin
+  // Insira aqui os valores a serem operados
+  val valorUm:Float? = 5f  //valor 1
+  val valorDois:Float? = 3f  //valor 2
+  val operação:String = "+" //Escolha uma operação "+" (soma), "-" (subtração), "*" (produto), "/" (divisão)
+  
+  fun main() {
+    if (valorUm != null && valorDois != null) 
+      {when (operação) {
+    "+" -> println(valorUm.plus(valorDois))
+    "-" -> println(valorUm.minus(valorDois))
+    "*" -> println(valorUm.times(valorDois))
+    "/" -> println(valorUm.div(valorDois))
+    else -> println("Operação inválida")  
+     }
+   }
+    else {
+    println("Um dos valores é nulo")
+    }
+  }
+  ````
+  
+  
