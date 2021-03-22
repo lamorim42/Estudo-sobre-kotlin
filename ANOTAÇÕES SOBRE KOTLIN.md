@@ -1060,6 +1060,225 @@ easy class
     }
   ````
   
+  ````kotlin
+//Pedindo entrada ao usuário 
   
+  fun main() {
+  
+      print("Digite o primeiro valor: ")
+      val valorUm:Float? = readLine()!!.toFloat()
+      print("Digite o segundo valor: ")
+      val valorDois:Float? = readLine()!!.toFloat()
+      print("Escolha uma operação: (+ ,- , *, /):")
+      val op:String = readLine()!!.toString()
+  
+      if (valorUm != null && valorDois != null)
+      {when (op) {
+          "+" -> println(valorUm.plus(valorDois))
+          "-" -> println(valorUm.minus(valorDois))
+          "*" -> println(valorUm.times(valorDois))
+          "/" -> println(valorUm.div(valorDois))
+          else -> println("Operação inválida")
+      }
+      }
+      else {
+          println("Um dos valores é nulo")
+      }
+  ````
 
-  
+## Resoluções dos desafios Introdução a programação em Kotlin
+
+### Desafio 1
+
+Leia dois valores inteiros identificados como variáveis A e B. Calcule a soma entre elas e chame essa variável de **SOMA**.
+A seguir escreva o valor desta variável.
+
+#### Solução
+
+````kotlin
+import java.util.Scanner
+
+fun main() {
+    val b:Int  = readLine()!!.toInt()
+    val a:Int = readLine()!!.toInt()
+    val soma:Int = a + b
+    println("SOMA = $soma")  //insira as variáveis corretamente
+}
+````
+
+### Desafio 2
+
+Leia um valor inteiro **X** (1 <= **X** <= 1000). Em seguida mostre os ímpares de 1 até **X**, um valor por linha, inclusive o **X**, se for o caso.
+
+#### Solução
+
+````kotlin
+fun main() {
+    var x:Int = readLine()!!.toInt()
+    if (x%2 == 0){
+    for (i in 1 .. x - 1 step 2) println(i)
+    } else {
+     for (i in 1 .. x step 2) println(i)   
+    }
+}
+````
+
+
+
+### Desafio 3
+
+Você terá o desafio de escrever um programa que leia um valor inteiro N (1 < N < 1000). Este N é a quantidade de linhas de saída que serão apresentadas na execução do programa.
+
+#### Solução
+
+````kotlin
+fun main() {
+    var x:Int = readLine()!!.toInt() 
+    for (i in 1 .. x){
+    println("$i ${i*i} ${i*i*i}")
+    }      
+}
+````
+
+
+
+## Resoluções dos desafios Solucionando problemas em Kotlin
+
+### Desafio 1
+
+Há um país denominado Lolipad, todos os habitantes ficam felizes em pagar seus impostos, pois sabem que nele não existem políticos corruptos e os recursos arrecadados são utilizados em benefício da população, sem qualquer desvio. A moeda deste país é o Loli, cujo símbolo é o R$.
+
+#### Solução
+
+````kotlin
+fun main(args: Array<String>) {
+    //continue a solução
+    fun Float.format(digits: Int) = "%.${digits}f".format(this).replace(',','.')
+    val r = readLine()!!.toFloat()
+    var i = 0F
+    
+    if ( r > 0.00f && r <= 2000.00f ) {
+        i = 0f
+    } else if ( r > 2000.00f && r <= 3000.00f ) {
+        i = (r - 2000.00f)*0.08f
+    } else if (r > 3000.00f && r <= 4500.00f) {
+        i = (999.99f*0.08f) + (r - 3000.00f)*0.18f
+    }  else if (r > 4500) {
+        i = (999.99f*0.08f) + (1499.99f*0.18f) + (r - 4500.00f)*0.28f
+    }
+    if (i == 0F) println("Isento") else println("R$ ${i.format(2)}")
+}
+````
+
+
+
+### Desafio 2
+
+
+
+````kotlin
+import java.math.BigDecimal
+import java.math.RoundingMode
+import kotlin.math.pow
+
+fun main(args: Array<String>) {
+    
+    val raio = readLine()!!.toDouble()
+    val pi:Double = 3.14159
+    val area = pi*(raio*raio)
+    val resultado = BigDecimal(  area  ).setScale(4, RoundingMode.HALF_EVEN)
+    println("A=$resultado") 
+}
+````
+
+
+
+### Desafio 3
+
+Primo como tava:
+
+````kotlin
+fun main(args: Array<String>) {
+    //continue a solução
+    val n =
+    
+    for (    ) {
+        
+    
+    }
+    
+}
+````
+
+solução 
+
+````kotlin
+fun main(args: Array<String>) {
+    val n:Int = readLine()!!.toInt() ?: 0
+
+    if (n in 1.. 200) {
+        for (j in 1..n) {
+            var p: Int = readLine()!!.toInt() ?: 0
+            var flag = false
+            for (i in 2..p / 2) {
+                if (p % i == 0) {
+                    flag = true
+                    break
+                }
+            }
+            if (!flag)
+                println("Prime")
+            else
+                println("Not Prime")
+        }
+    }
+}
+````
+
+
+
+
+
+### Desafio 4
+
+````kotlin
+import java.io.EOFException
+
+fun main(args: Array<String>) {
+    
+    while (true) {
+    
+        try {
+        
+            val l = readLine()!!.toInt()
+            val v = readLine()!!.split("        ").run {     {      () } }
+            v.sort()
+            when (v.last()) {
+              
+            }
+    
+        } catch (f :  ) {
+            break
+        } catch (n : ) {
+            break
+        } catch (e :) {
+            break
+        }
+    }
+}
+````
+
+````kotlin
+
+````
+
+
+
+
+
+### Desafio 5
+
+````kotlin
+
+````
+
