@@ -1,3 +1,7 @@
+
+
+
+
 # KOTLIN
 
 Kotlin é uma linguagem de programação de código aberto que combina programação orientada a objetos e recursos funcionais em uma plataforma única.
@@ -1144,7 +1148,7 @@ fun main() {
 
 ## Resoluções dos desafios Solucionando problemas em Kotlin
 
-### Desafio 1
+### Desafio 1 [v]
 
 Há um país denominado Lolipad, todos os habitantes ficam felizes em pagar seus impostos, pois sabem que nele não existem políticos corruptos e os recursos arrecadados são utilizados em benefício da população, sem qualquer desvio. A moeda deste país é o Loli, cujo símbolo é o R$.
 
@@ -1172,7 +1176,7 @@ fun main(args: Array<String>) {
 
 
 
-### Desafio 2
+### Desafio 2 [v]
 
 
 
@@ -1193,7 +1197,7 @@ fun main(args: Array<String>) {
 
 
 
-### Desafio 3
+### Desafio 3 [v]
 
 Primo como tava:
 
@@ -1213,24 +1217,34 @@ fun main(args: Array<String>) {
 solução 
 
 ````kotlin
-fun main(args: Array<String>) {
-    val n:Int = readLine()!!.toInt() ?: 0
+import kotlin.math.sqrt
 
-    if (n in 1.. 200) {
-        for (j in 1..n) {
-            var p: Int = readLine()!!.toInt() ?: 0
-            var flag = false
-            for (i in 2..p / 2) {
-                if (p % i == 0) {
-                    flag = true
-                    break
-                }
-            }
-            if (!flag)
-                println("Prime")
-            else
-                println("Not Prime")
+fun main(args: Array<String>) {
+    var n = 0
+    val entrada: String? = readLine()
+    if (!entrada.isNullOrBlank()) {
+        n = entrada.toInt()
+    }
+
+
+    for (j in 1..n) {
+        val primo: String? = readLine()
+        var p = 0.0
+        if (!primo.isNullOrBlank()) {
+            p = primo.toDouble()
         }
+        var flag = false
+        for (i in 2..sqrt(p).toInt()) {
+            if (p % i == 0.0) {
+                flag = true
+                break
+            }
+        }
+        if (!flag)
+            println("Prime")
+        else
+            println("Not Prime")
+
     }
 }
 ````
@@ -1239,7 +1253,7 @@ fun main(args: Array<String>) {
 
 
 
-### Desafio 4
+### Desafio 4 [v]
 
 ````kotlin
 import java.io.EOFException
@@ -1254,9 +1268,7 @@ fun main(args: Array<String>) {
             val v = readLine()!!.split("        ").run {     {      () } }
             v.sort()
             when (v.last()) {
-              
             }
-    
         } catch (f :  ) {
             break
         } catch (n : ) {
@@ -1269,14 +1281,67 @@ fun main(args: Array<String>) {
 ````
 
 ````kotlin
+import java.io.EOFException
 
+fun main(args: Array<String>) {
+
+        while (true) {
+
+        try {
+
+                val l = readLine()!!.toInt()
+                if (l in 1..50) {
+                        val v = readLine()!!.split(" ").run {
+                                val vint: ArrayList<Int> = arrayListOf()
+                                for (i in this) {
+                                        vint.add(i.toInt())
+                                }
+                                vint
+                        }
+                        v.sort()
+                        when (v.last()) {
+                                in 1..10 -> println("1")
+                                in 11..19 -> println("2")
+                                else -> println("3")
+                        }
+
+                }
+        } catch (f : Exception ) {
+           break
+        } catch (n : Exception ) {
+           break
+        } catch (e : Exception ) {
+           break
+                }
+        }
+}
 ````
 
-
+- `.split(" ")` transforma a minha entrada em uma array, onde cada elemento é uma palavra do que foi escrito.
 
 
 
 ### Desafio 5
+
+````kotlin
+fun main(args: Array<String>) {
+    
+    val lista = mutableListOf<Int>()
+    
+    for (i in 1..readLine()!!.toInt()) {
+        val input = readLine()!!.split(" ").map { it.toInt() }
+        
+
+
+    }
+    println(       ("\n"))
+}
+
+// máximo divisor comum (chamada recursiva)
+fun mdc(n1: Int, n2: Int): Int {
+   
+}
+````
 
 ````kotlin
 
