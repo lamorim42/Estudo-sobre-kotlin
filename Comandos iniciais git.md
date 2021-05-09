@@ -21,12 +21,12 @@
 | git commit -m "msg..."                                       | Cria o commit, mudando o estado do arquivo de staged para **Unmodified**. Quando editamos o arqui ele vai para **Modified**. |
 | git status                                                   | Diz o stato dos arquivos                                     |
 | git remote add [^ origin ] "https..."                        | Adiciona servidor para transferir repositórios               |
-| git push origin master                                       | Empurra repositorio de local para servidor remoto            |
-| git pull origin master                                       | Puxa repositório do github para o git                        |
+| git push origin main                                         | Empurra repositorio de local para servidor remoto            |
+| git pull origin main                                         | Puxa repositório do github para o git                        |
 | git clone "https..."                                         | Clona um repositório hospedado no github                     |
 | git remote -v                                                | mostra os repositórios associados aquele diretório.          |
 
-[^ origin ]: origin é o apelido que se da ao link do servidor.
+[ origin ]: origin é o apelido que se da ao link do servidor.
 
 
 
